@@ -3,8 +3,11 @@
     <li *ngFor="let route of routes">
       <a
         [routerLink]="route.path"
+        [routerLinkActive]="'is-active'"
+        class="is-flex is-align-items-center py-3"
       >
-        <span>{{route.label}}</span>
+        <fa-icon [icon]="route.icon" size="xl"></fa-icon>
+        <span class="is-size-6 ml-4">{{route.label}}</span>
       </a>
     </li>
   </ul>
