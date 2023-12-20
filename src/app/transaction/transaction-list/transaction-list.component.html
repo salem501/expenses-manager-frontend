@@ -1,1 +1,77 @@
-<p>transaction-list works!</p>
+<table class="table is-narrow is-fullwidth">
+  <thead>
+  <tr>
+    <th></th>
+    <th>Date</th>
+    <th>Amount</th>
+    <th>Category</th>
+    <th>Description</th>
+    <th></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let transaction of transactions; let i = index">
+    <td>{{ i + 1 }}</td>
+    <td>{{ transaction.transactionDate }}</td>
+    <td>{{ transaction.amount | currency:'EUR' }}</td>
+    <td>{{ transaction.category }}</td>
+    <td>{{ transaction.description }}</td>
+
+    <td>
+      <div (click)="deleteTransaction(transaction.id)">
+        <fa-icon [icon]="faTrashCan"></fa-icon>
+      </div>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<div class="is-flex is-justify-content-end">
+  <button (click)="toggleModal()" class="button is-danger is-outlined">Add new transaction</button>
+</div>
+<div class="modal"
+     [ngClass]="{'is-active': showAddTransactionForm}">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Add new transaction</p>
+      <button (click)="toggleModal()" class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <form [formGroup]="newTransactionForm" (ngSubmit)="submitForm()">
+        <div class="field">
+          <label class="label">Amount</label>
+          <div class="control">
+            <input class="input" type="number" formControlName="amount"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Description</label>
+          <div class="control">
+            <input class="input" type="text" formControlName="description"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Date</label>
+          <div class="control">
+            <input class="input" type="date" formControlName="transactionDate"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Category</label>
+          <div class="control">
+            <input class="input" type="text" formControlName="category"/>
+          </div>
+        </div>
+      </form>
+    </section>
+    <footer class="modal-card-foot">
+      <button (click)="submitForm()" class="button is-danger" [disabled]="newTransactionForm.invalid">Add transaction
+      </button>
+      <button (click)="toggleModal()" class="button">Cancel</button>
+    </footer>
+  </div>
+</div>
+
