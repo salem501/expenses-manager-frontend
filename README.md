@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.5.
 
+![image](https://github.com/salem501/expenses-manager/assets/110671574/770cf1d9-3aa5-4932-8dc1-6986a3a14528)
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
