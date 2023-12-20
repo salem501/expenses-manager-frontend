@@ -6,3 +6,8 @@
   width: 200vh;
   height: 100vh;
 }
+
+.box{
+  max-height: 100vh - 17vh;
+  overflow-y: auto;
+}
