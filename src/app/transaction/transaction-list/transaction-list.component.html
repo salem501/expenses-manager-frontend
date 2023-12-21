@@ -10,7 +10,9 @@
   </thead>
   <tbody>
   <ng-container *ngIf="transactions.length!==0; else noDataLabel">
-    <tr *ngFor="let transaction of transactions; let i = index" (click)="openChangeForm(transaction)">
+    <tr *ngFor="let transaction of transactions; let i = index"
+        (click)="openChangeForm(transaction)"
+        class="table-row">
       <td>{{ i + 1 }}</td>
       <td>{{ transaction.transactionDate }}</td>
       <td>{{ transaction.amount | currency:'EUR' }}</td>
