@@ -9,7 +9,7 @@
   </tr>
   </thead>
   <tbody>
-  <ng-container *ngIf="transactions.length!==0; else noDataLabel">
+  <ng-container *ngIf="transactions.length!==0">
     <tr *ngFor="let transaction of transactions; let i = index"
         (click)="openChangeForm(transaction)"
         class="table-row">
@@ -22,15 +22,12 @@
   </ng-container>
   </tbody>
 </table>
+<span *ngIf="transactions.length===0" class="no-data-label">
+  No Transactions for this month.
+</span>
 <div class="is-flex is-justify-content-end">
   <button (click)="openAddNewTransactionForm()" class="button is-danger is-outlined">Add new transaction</button>
 </div>
-
-<ng-template #noDataLabel>
-    <span class="no-data-label">
-        No Transactions for this month.
-    </span>
-</ng-template>
 
 <app-add-transaction-form
   *ngIf="showAddTransactionForm"
