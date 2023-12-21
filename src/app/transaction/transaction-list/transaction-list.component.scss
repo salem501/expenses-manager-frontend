@@ -1,0 +1,19 @@
+.table thead th {
+  position: sticky;
+  top: -20px;
+  height: 30px;
+  background-color: rgb(199, 129, 147);
+  z-index: 2;
+
+  &.first-header-is-rounded {
+    border-radius: 10px 0 0 0;
+  }
+
+  &.last-header-is-rounded {
+    border-radius: 0 10px 0 0;
+  }
+}
+
+.no-data-label {
+  color: #be657c;
+}

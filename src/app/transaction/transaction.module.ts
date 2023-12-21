@@ -5,13 +5,15 @@ import { AddTransactionFormComponent } from './add-transaction-form/add-transact
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {AppModule} from "../app.module";
+import { ChangeTransactionFormComponent } from './change-transaction-form/change-transaction-form.component';
 
 
 
 @NgModule({
   declarations: [
     TransactionListComponent,
-    AddTransactionFormComponent
+    AddTransactionFormComponent,
+    ChangeTransactionFormComponent
   ],
   imports: [
     CommonModule,

@@ -31,4 +31,11 @@ export class TransactionService {
         const url = `${this.backendUrl}${endpoint}${transactionId}`;
         return this.http.delete<Transaction>(url);
     }
+
+  updateTransaction(id: string, transaction: Transaction): Observable<Transaction> {
+    const endpoint = 'update/'
+    const url = `${this.backendUrl}${endpoint}${id}`;
+    console.log(url);
+    return this.http.put<Transaction>(url, transaction);
+  }
 }

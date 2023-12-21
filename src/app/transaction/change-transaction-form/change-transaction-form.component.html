@@ -3,7 +3,7 @@
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
-      <p class="modal-card-title">Add new transaction</p>
+      <p class="modal-card-title">Transaction</p>
       <button (click)="closeForm()" class="delete"></button>
     </header>
     <section class="modal-card-body">
@@ -35,8 +35,8 @@
       </form>
     </section>
     <footer class="modal-card-foot">
-      <button (click)="submitForm()" class="button is-danger" [disabled]="transactionForm.invalid">Add transaction
-      </button>
+      <button (click)="save()" class="button is-danger" [disabled]="transactionForm.invalid">Save</button>
+      <button (click)="delete()" class="button is-danger">Delete</button>
       <button (click)="closeForm()" class="button">Cancel</button>
     </footer>
   </div>

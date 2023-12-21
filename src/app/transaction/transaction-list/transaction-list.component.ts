@@ -1,85 +1,100 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionService} from "../transaction.service";
 import {Transaction} from "../../model";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {FaIconLibrary} from "@fortawesome/angular-fontawesome";
-import {faTrashCan} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
-    selector: 'app-transaction-list',
-    templateUrl: './transaction-list.component.html',
-    styleUrls: ['./transaction-list.component.scss']
+  selector: 'app-transaction-list',
+  templateUrl: './transaction-list.component.html',
+  styleUrls: ['./transaction-list.component.scss']
 })
 export class TransactionListComponent implements OnInit {
 
-    transactions: Transaction[] = [];
+  transactions: Transaction[] = [];
 
-    newTransactionForm: FormGroup;
+  groupedTransactions: Transaction[][] = [[]];
 
-    showAddTransactionForm = false
+  showAddTransactionForm = false;
 
-    todayDateFormatted = '';
+  showChangeTransactionForm = false;
+
+  selectedTransaction: Transaction | undefined;
+
+  constructor(
+    private transactionService: TransactionService,
+  ) {
+  }
+
+  ngOnInit(): void {
+    this.fetchAllTransactions();
+  }
 
 
-    constructor(
-        private transactionService: TransactionService,
-        private fb: FormBuilder,
-        private library: FaIconLibrary
-    ) {
-        let todayDate = new Date();
-        this.todayDateFormatted = todayDate.toISOString().split('T')[0];
-        this.newTransactionForm = this.fb.group({
-            transactionDate: [this.todayDateFormatted, Validators.required],
-            amount: [null, [Validators.required, Validators.min(0)]],
-            category: [null, Validators.required],
-            description: [null]
+  private fetchAllTransactions() {
+    this.transactionService.getAllTransactions().subscribe(
+      (transactions) => {
+        this.transactions = transactions;
+        transactions.sort((a: Transaction, b: Transaction) => {
+          return a.transactionDate >= b.transactionDate ? 0 : 1;
         });
-        library.addIcons(faTrashCan);
-    }
+        this.groupTransactionsByDay();
+      }
+    );
+  }
 
-    ngOnInit(): void {
+  updateTransaction(transaction: Transaction) {
+    this.transactionService.updateTransaction(transaction.id, transaction).subscribe(() => {
+      this.fetchAllTransactions();
+    });
+  }
+
+  deleteTransaction(transactionId: string) {
+    this.transactionService.deleteTransaction(transactionId).subscribe(() => {
+      this.fetchAllTransactions();
+    });
+  }
+
+  submitAddNewTransaction(transaction: Transaction) {
+    if (transaction) {
+      this.addNewTransaction(transaction);
+      this.fetchAllTransactions();
+    }
+  }
+
+  private addNewTransaction(transaction: Transaction) {
+    this.transactionService.addTransaction(transaction).subscribe(
+      () => {
         this.fetchAllTransactions();
-    }
+      }
+    );
+  }
 
-    private fetchAllTransactions() {
-        this.transactionService.getAllTransactions().subscribe(
-            (transactions) => {
-                this.transactions = transactions;
-            }
-        );
-    }
+  closeAddNewTransactionForm() {
+    this.showAddTransactionForm = false;
+  }
 
-    deleteTransaction(transactionId: string) {
-        this.transactionService.deleteTransaction(transactionId).subscribe(() => {
-            this.fetchAllTransactions();
-        });
-    }
+  openAddNewTransactionForm() {
+    this.showAddTransactionForm = true;
+  }
 
-    submitForm() {
-        if (this.newTransactionForm.valid) {
-            const formData = this.newTransactionForm.value;
-            this.addNewTransaction(formData);
-        }
-    }
+  openChangeForm(transaction: Transaction) {
+    this.selectedTransaction = transaction;
+    this.showChangeTransactionForm = true;
+  }
 
-    private addNewTransaction(transaction: Transaction) {
-        this.transactionService.addTransaction(transaction).subscribe(
-            () => {
-                this.fetchAllTransactions();
-                this.resetForm();
-                this.toggleModal();
-            }
-        );
-    }
+  closeChangeTransactionForm() {
+    this.showChangeTransactionForm = false;
+  }
 
-    private resetForm() {
-        this.newTransactionForm.reset();
-        this.newTransactionForm.get('transactionDate')?.setValue(this.todayDateFormatted);
-    }
-
-    toggleModal() {
-        this.showAddTransactionForm = !this.showAddTransactionForm;
-    }
-
-  protected readonly faTrashCan = faTrashCan;
+  private groupTransactionsByDay() {
+    if (this.transactions.length === 0) return;
+    let transactionByDate: Map<string, Transaction[]> = new Map();
+    this.transactions.forEach(transaction => {
+      if (transactionByDate.has(transaction.transactionDate)) {
+        transactionByDate.get(transaction.transactionDate)?.push(transaction);
+      } else {
+        transactionByDate.set(transaction.transactionDate, [transaction]);
+      }
+    });
+    this.groupedTransactions = Array.from(transactionByDate.values());
+  }
 }
