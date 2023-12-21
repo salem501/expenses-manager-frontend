@@ -3,7 +3,8 @@ import {Route, RouterModule} from '@angular/router';
 import {TransactionListComponent} from "./transaction/transaction-list/transaction-list.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {StatisticsComponent} from "./statistics/statistics.component";
-import {faChartPie, faCompass, faMoneyBillTransfer, IconDefinition} from "@fortawesome/free-solid-svg-icons";
+import {faChartPie, faCompass, faMoneyBillTransfer, faSliders, IconDefinition} from "@fortawesome/free-solid-svg-icons";
+import {PreferencesComponent} from "./preferences/preferences.component";
 
 
 export type MenuRoute = Route & {
@@ -30,6 +31,12 @@ export const routes: MenuRoute[] = [
     path: 'statistics',
     component: StatisticsComponent,
     icon: faChartPie
+  },
+  {
+    label: 'Preferences',
+    path: 'preferences',
+    component: PreferencesComponent,
+    icon: faSliders
   }
 ];
 

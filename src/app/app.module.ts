@@ -10,13 +10,15 @@ import {StatisticsComponent} from './statistics/statistics.component';
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {HttpClientModule} from "@angular/common/http";
 import {TransactionModule} from "./transaction/transaction.module";
+import { PreferencesComponent } from './preferences/preferences.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavBarComponent,
     DashboardComponent,
-    StatisticsComponent
+    StatisticsComponent,
+    PreferencesComponent
   ],
   imports: [
     BrowserModule,
