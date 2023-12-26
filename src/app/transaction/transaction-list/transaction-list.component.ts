@@ -19,18 +19,24 @@ export class TransactionListComponent implements OnInit {
 
   selectedTransaction: Transaction | undefined;
 
+  private today = new Date();
+
+  private year: number = this.today.getFullYear();
+
+  private month: number = this.today.getMonth() + 1;
+
   constructor(
     private transactionService: TransactionService,
   ) {
   }
 
   ngOnInit(): void {
-    this.fetchAllTransactions();
+    this.fetchTransactions();
   }
 
 
-  private fetchAllTransactions() {
-    this.transactionService.getAllTransactions().subscribe(
+  private fetchTransactions() {
+    this.transactionService.getTransactionsByYearAndMonth(this.year, this.month).subscribe(
       (transactions) => {
         this.transactions = transactions;
         transactions.sort((a: Transaction, b: Transaction) => {
@@ -43,27 +49,31 @@ export class TransactionListComponent implements OnInit {
 
   updateTransaction(transaction: Transaction) {
     this.transactionService.updateTransaction(transaction.id, transaction).subscribe(() => {
-      this.fetchAllTransactions();
+      this.fetchTransactions();
     });
   }
 
   deleteTransaction(transactionId: string) {
     this.transactionService.deleteTransaction(transactionId).subscribe(() => {
-      this.fetchAllTransactions();
+      this.fetchTransactions();
     });
   }
 
   submitAddNewTransaction(transaction: Transaction) {
     if (transaction) {
       this.addNewTransaction(transaction);
-      this.fetchAllTransactions();
+      this.fetchTransactions();
     }
+  }
+
+  getTotalIncome() {
+    return this.transactions.reduce((a: number, b: Transaction ) => a + b.amount, 0);
   }
 
   private addNewTransaction(transaction: Transaction) {
     this.transactionService.addTransaction(transaction).subscribe(
       () => {
-        this.fetchAllTransactions();
+        this.fetchTransactions();
       }
     );
   }

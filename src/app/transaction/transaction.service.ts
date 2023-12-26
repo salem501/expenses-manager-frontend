@@ -14,9 +14,10 @@ export class TransactionService {
     constructor(private http: HttpClient) {
     }
 
-    getAllTransactions(): Observable<Transaction[]> {
-        const endpoint = 'findAll/'
-        const url = `${this.backendUrl}${endpoint}${(this.userId)}`;
+    getTransactionsByYearAndMonth(year: number, month: number): Observable<Transaction[]> {
+        const endpoint = 'getByYearAndMonth/'
+        const url = `${this.backendUrl}${endpoint}${(this.userId)}/${year}/${month}`;
+        console.log(url);
         return this.http.get<Transaction[]>(url);
     }
 

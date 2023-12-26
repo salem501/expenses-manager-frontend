@@ -1,3 +1,18 @@
+<div class="overall-section is-flex is-justify-content-space-around">
+  <div class="box has-text-centered">
+    <div class="has-text-weight-bold">Income</div>
+    <div class="mt-2 is-size-4 is-center is-primary" style="color: blue">{{getTotalIncome() | currency: 'EUR'}}</div>
+  </div>
+  <div class="box has-text-centered">
+    <div class="has-text-weight-bold">Expenses</div>
+    <div class="mt-2 is-size-4 is-center is-primary" style="color: red">{{getTotalIncome() | currency: 'EUR'}}</div>
+  </div>
+  <div class="box has-text-centered">
+    <div class="has-text-weight-bold">Total</div>
+    <div class="mt-2 is-size-4 is-center is-primary">{{getTotalIncome() | currency: 'EUR'}}</div>
+  </div>
+</div>
+
 <table class="table is-narrow is-striped is-fullwidth transaction-table">
   <thead>
   <tr>
