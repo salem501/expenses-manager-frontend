@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionService} from "../transaction.service";
-import {Transaction} from "../../model";
+import months, {Transaction} from "../../model";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {faCircleChevronLeft, faCircleChevronRight} from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: 'app-transaction-list',
@@ -28,12 +30,36 @@ export class TransactionListComponent implements OnInit {
   constructor(
     private transactionService: TransactionService,
   ) {
+    library.add(faCircleChevronRight, faCircleChevronLeft)
   }
 
   ngOnInit(): void {
     this.fetchTransactions();
   }
 
+  getDateLabel() {
+    return `${months.get(this.month)}, ${this.year}`;
+  }
+
+  goToNextMonth() {
+    if (this.month == 12) {
+      this.month = 1;
+      this.year++;
+    } else {
+      this.month++;
+    }
+    this.fetchTransactions();
+  }
+
+  goToPreviousMonth() {
+    if (this.month == 1) {
+      this.month = 12;
+      this.year--;
+    } else {
+      this.month--;
+    }
+    this.fetchTransactions();
+  }
 
   private fetchTransactions() {
     this.transactionService.getTransactionsByYearAndMonth(this.year, this.month).subscribe(
@@ -67,7 +93,7 @@ export class TransactionListComponent implements OnInit {
   }
 
   getTotalIncome() {
-    return this.transactions.reduce((a: number, b: Transaction ) => a + b.amount, 0);
+    return this.transactions.reduce((a: number, b: Transaction) => a + b.amount, 0);
   }
 
   private addNewTransaction(transaction: Transaction) {
@@ -107,4 +133,8 @@ export class TransactionListComponent implements OnInit {
     });
     this.groupedTransactions = Array.from(transactionByDate.values());
   }
+
+  protected readonly months = months;
+  protected readonly faCircleChevronLeft = faCircleChevronLeft;
+  protected readonly faCircleChevronRight = faCircleChevronRight;
 }

@@ -13,6 +13,12 @@
   </div>
 </div>
 
+<div class="is-flex is-justify-content-center my-4">
+  <fa-icon class="is-size-4" (click)="goToPreviousMonth()" [icon]="faCircleChevronLeft"></fa-icon>
+  <div class="month-label has-text-centered mx-3 is-size-4 has-text-weight-bold">{{getDateLabel()}}</div>
+  <fa-icon class="is-size-4" (click)="goToNextMonth()" [icon]="faCircleChevronRight"></fa-icon>
+</div>
+
 <table class="table is-narrow is-striped is-fullwidth transaction-table">
   <thead>
   <tr>
