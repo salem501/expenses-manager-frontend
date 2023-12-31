@@ -1,3 +1,24 @@
+export interface User {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+}
+
+export interface AuthenticationRequest {
+  email: string;
+  password: string;
+}
+
+export interface RegisterRequest {
+  email: string;
+  password: string;
+}
+
+export interface AuthenticationResponse {
+  token: string;
+}
+
 export interface Transaction {
   id: string;
   userId?: string;
