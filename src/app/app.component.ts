@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'expenses-manager';
+
+  router!: Router;
+
+  constructor(router: Router) {
+    this.router = router;
+  }
+
+  showApplicationView() {
+    return !(this.router.url.includes('/login') || this.router.url.includes('/signup'))
+  }
 }

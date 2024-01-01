@@ -5,6 +5,8 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {StatisticsComponent} from "./statistics/statistics.component";
 import {faChartPie, faCompass, faMoneyBillTransfer, faSliders, IconDefinition} from "@fortawesome/free-solid-svg-icons";
 import {PreferencesComponent} from "./preferences/preferences.component";
+import {LoginComponent} from "./login/login.component";
+import {SignupComponent} from "./signup/signup.component";
 
 
 export type MenuRoute = Route & {
@@ -12,7 +14,19 @@ export type MenuRoute = Route & {
   icon: IconDefinition;
 }
 
-export const routes: MenuRoute[] = [
+export const nonMenuRoutes: Route[]=[
+  {
+    path:'login',
+    component: LoginComponent
+  },
+  {
+    path:'signup',
+    component: SignupComponent
+  }
+
+]
+
+export const menuRoutes: MenuRoute[] = [
 
   {
     label: 'Dashboard',
@@ -47,7 +61,7 @@ const defaultRoute: Route = {
 }
 
 @NgModule({
-  imports: [RouterModule.forRoot([defaultRoute, ...routes])],
+  imports: [RouterModule.forRoot([defaultRoute, ...menuRoutes, ...nonMenuRoutes])],
   exports: [RouterModule]
 })
 export class AppRoutingModule {
