@@ -2,29 +2,29 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {Transaction} from "../model";
 import {HttpClient} from "@angular/common/http";
+import {AuthService} from "../auth-service/auth.service";
 
 @Injectable({
     providedIn: 'root'
 })
 export class TransactionService {
 
-    private backendUrl = 'http://localhost:8080/api/transaction/';
-    private userId = '5957a226-c5b0-40ea-b249-b9ead524f724'
+    private backendUrl = 'http://localhost:8080/transaction/';
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+                private authService: AuthService) {
     }
 
     getTransactionsByYearAndMonth(year: number, month: number): Observable<Transaction[]> {
         const endpoint = 'getByYearAndMonth/'
-        const url = `${this.backendUrl}${endpoint}${(this.userId)}/${year}/${month}`;
-        console.log(url);
+        const url = `${this.backendUrl}${endpoint}${this.authService.userId}/${year}/${month}`;
         return this.http.get<Transaction[]>(url);
     }
 
     addTransaction(transaction: Transaction): Observable<Transaction> {
         const endpoint = 'add'
         const url = `${this.backendUrl}${endpoint}`;
-        return this.http.post<Transaction>(url, {...transaction, userId: this.userId});
+        return this.http.post<Transaction>(url, {...transaction, userId: this.authService.userId});
     }
 
     deleteTransaction(transactionId: string): Observable<Transaction> {

@@ -1,6 +1,6 @@
 <nav class="menu">
   <ul class="menu-list">
-    <li *ngFor="let route of routes">
+    <li *ngFor="let route of menuRoutes">
       <a
         [routerLink]="route.path"
         [routerLinkActive]="'is-active'"
@@ -12,4 +12,5 @@
     </li>
   </ul>
 </nav>
+<button (click)="logout()">logout</button>
 

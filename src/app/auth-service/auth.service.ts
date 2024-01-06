@@ -1,16 +1,16 @@
 import {Injectable} from '@angular/core';
-import * as http from "http";
-import {HttpClient} from "@angular/common/http";
-import {AuthenticationRequest, AuthenticationResponse, RegisterRequest, User} from "../model";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {AuthenticationRequest, AuthenticationResponse, RegisterRequest} from "../model";
 import {Observable} from "rxjs";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private baseUrl = '/localhost:8080';
+  private baseUrl = 'http://localhost:8080/auth';
 
   private httpClient;
 
@@ -18,9 +18,14 @@ export class AuthService {
 
   public loggedUser: string | undefined;
 
+  public userId: string |  undefined;
+
   private jwtHelperService;
 
-  constructor(httpClient: HttpClient, jwtHelperService: JwtHelperService) {
+  constructor(httpClient: HttpClient,
+              jwtHelperService: JwtHelperService,
+              private router: Router
+          ) {
     this.httpClient = httpClient;
     this.jwtHelperService = jwtHelperService;
   }
@@ -29,25 +34,31 @@ export class AuthService {
     if (!this.token) return;
     let decodedToken = this.jwtHelperService.decodeToken(this.token!);
     this.loggedUser = decodedToken.sub;
+    this.userId = decodedToken['userId'];
   }
 
-  private saveToken() {
-    if (!this.token) return;
-    localStorage.setItem("jwt-token", this.token);
+  saveToken(jwt:string) {
+    localStorage.setItem('jwt-token',jwt);
+    this.token = jwt;
+    this.decodeJwt();
   }
 
   loadToken() {
     const token = localStorage.getItem("jwt-token");
-    if (token) {
-      this.token = token;
-    }else {
-      //Todo: handle token not found in Cache
-    }
+    this.token = token!;
+    this.decodeJwt();
   }
 
   login(loginRequest: AuthenticationRequest): Observable<AuthenticationResponse> {
     const url = `${this.baseUrl}/authenticate`
     return this.httpClient.post<AuthenticationResponse>(url, loginRequest);
+  }
+
+  logout(){
+    localStorage.removeItem("jwt-token");
+    this.userId = undefined;
+    this.loggedUser = undefined;
+    this.router.navigate(['/login']);
   }
 
   signup(registerRequest: RegisterRequest): Observable<AuthenticationResponse> {

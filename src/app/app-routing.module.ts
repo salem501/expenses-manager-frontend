@@ -7,6 +7,7 @@ import {faChartPie, faCompass, faMoneyBillTransfer, faSliders, IconDefinition} f
 import {PreferencesComponent} from "./preferences/preferences.component";
 import {LoginComponent} from "./login/login.component";
 import {SignupComponent} from "./signup/signup.component";
+import {AuthService} from "./auth-service/auth.service";
 
 
 export type MenuRoute = Route & {
@@ -14,13 +15,13 @@ export type MenuRoute = Route & {
   icon: IconDefinition;
 }
 
-export const nonMenuRoutes: Route[]=[
+export const nonMenuRoutes: Route[] = [
   {
-    path:'login',
+    path: 'login',
     component: LoginComponent
   },
   {
-    path:'signup',
+    path: 'signup',
     component: SignupComponent
   }
 
@@ -56,7 +57,7 @@ export const menuRoutes: MenuRoute[] = [
 
 const defaultRoute: Route = {
   path: '',
-  redirectTo: '/dashboard',
+  redirectTo: '/login',
   pathMatch: 'full'
 }
 

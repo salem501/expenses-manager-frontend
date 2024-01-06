@@ -15,31 +15,32 @@ import {SignupComponent} from './signup/signup.component';
 import {LoginComponent} from "./login/login.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
+import {AuthService} from "./auth-service/auth.service";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    SideNavBarComponent,
-    DashboardComponent,
-    StatisticsComponent,
-    PreferencesComponent,
-    LoginComponent,
-    SignupComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FontAwesomeModule,
-    HttpClientModule,
-    TransactionModule,
-    NgOptimizedImage,
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  providers: [{provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
-    JwtHelperService],
-  exports: [],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        SideNavBarComponent,
+        DashboardComponent,
+        StatisticsComponent,
+        PreferencesComponent,
+        LoginComponent,
+        SignupComponent
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FontAwesomeModule,
+        HttpClientModule,
+        TransactionModule,
+        NgOptimizedImage,
+        CommonModule,
+        ReactiveFormsModule
+    ],
+    providers: [{provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+        JwtHelperService],
+    exports: [],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
 }

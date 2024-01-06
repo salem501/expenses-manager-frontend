@@ -1,0 +1,27 @@
+<body>
+<div class="box login-block">
+  <div class="has-text-centered is-size-2">
+    Login
+  </div>
+  <form [formGroup]="loginForm">
+    <div class="field">
+      <label class="label">E-Mail</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Text input" formControlName="email">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Text input" formControlName="password">
+      </div>
+    </div>
+
+  </form>
+  <div class="control is-flex is-justify-content-space-between">
+    <a [routerLink]="'/signup'" class="pt-2"> Don't have an account yet?</a>
+    <button (click)="login()" class="button is-link">Login</button>
+  </div>
+</div>
+</body>

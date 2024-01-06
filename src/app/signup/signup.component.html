@@ -1,0 +1,39 @@
+<body>
+<div class="box signup-block">
+  <div class="has-text-centered is-size-2">
+    Sign up
+  </div>
+  <form [formGroup]="signUpForm">
+    <div class="field">
+      <label class="label">First name</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Text input" formControlName="firstName">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">Last name</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Text input" formControlName="lastName">
+      </div>
+    </div>
+    <div class="field">
+      <label class="label">E-Mail</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Text input" formControlName="email">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control">
+        <input class="input" type="text" placeholder="Text input" formControlName="password">
+      </div>
+    </div>
+
+  </form>
+  <div class="control is-flex is-justify-content-space-between">
+    <a [routerLink]="'/login'" class="pt-2">Already have an account?</a>
+    <button (click)="signup()" class="button is-link">Sign up</button>
+  </div>
+</div>
+</body>

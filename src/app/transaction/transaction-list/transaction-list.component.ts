@@ -3,6 +3,7 @@ import {TransactionService} from "../transaction.service";
 import months, {Transaction} from "../../model";
 import { library } from '@fortawesome/fontawesome-svg-core'
 import {faCircleChevronLeft, faCircleChevronRight} from "@fortawesome/free-solid-svg-icons";
+import {AuthService} from "../../auth-service/auth.service";
 
 @Component({
   selector: 'app-transaction-list',
@@ -29,6 +30,7 @@ export class TransactionListComponent implements OnInit {
 
   constructor(
     private transactionService: TransactionService,
+    private authService: AuthService
   ) {
     library.add(faCircleChevronRight, faCircleChevronLeft)
   }
