@@ -26,10 +26,18 @@
 }
 
 .overall-section .box {
-  width: 150px;
-  height: 100px;
+  width: 200px;
+  height: 120px;
 }
 
 .month-label {
   width: 200px;
+}
+
+.has-income-color {
+ color: blue;
+}
+
+.has-expense-color {
+  color: red;
 }

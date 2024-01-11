@@ -2,6 +2,7 @@ import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {TransactionService} from "../transaction.service";
 import {Transaction} from "../../model";
+import {TransactionType} from "../TransactionType";
 
 @Component({
   selector: 'app-add-transaction-form',
@@ -28,7 +29,8 @@ export class AddTransactionFormComponent {
       transactionDate: [this.todayDateFormatted, Validators.required],
       amount: [null, [Validators.required, Validators.min(0)]],
       category: [null, Validators.required],
-      description: [null]
+      description: [null],
+      type: [<TransactionType|null>null, Validators.required]
     });
   }
 
@@ -48,4 +50,6 @@ export class AddTransactionFormComponent {
     this.transactionForm.reset();
     this.transactionForm.get('transactionDate')?.setValue(this.todayDateFormatted);
   }
+
+  protected readonly TransactionType = TransactionType;
 }

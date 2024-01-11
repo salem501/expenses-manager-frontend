@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {TransactionService} from "../transaction.service";
 import months, {Transaction} from "../../model";
-import { library } from '@fortawesome/fontawesome-svg-core'
+import {library} from '@fortawesome/fontawesome-svg-core'
 import {faCircleChevronLeft, faCircleChevronRight} from "@fortawesome/free-solid-svg-icons";
 import {AuthService} from "../../auth-service/auth.service";
+import {TransactionType} from "../TransactionType";
 
 @Component({
   selector: 'app-transaction-list',
@@ -95,7 +96,21 @@ export class TransactionListComponent implements OnInit {
   }
 
   getTotalIncome() {
-    return this.transactions.reduce((a: number, b: Transaction) => a + b.amount, 0);
+    return this.transactions.reduce((a: number, b: Transaction) => {
+      if (b.type === TransactionType.INCOME) return a + b.amount;
+      return a;
+    }, 0);
+  }
+
+  getTotalExpenses() {
+    return this.transactions.reduce((a: number, b: Transaction) => {
+      if (b.type === TransactionType.EXPENSE) return a + b.amount;
+      return a;
+    }, 0);
+  }
+
+  getDifferenceIncomeAndExpenses() {
+    return this.getTotalIncome() - this.getTotalExpenses();
   }
 
   private addNewTransaction(transaction: Transaction) {
@@ -139,4 +154,5 @@ export class TransactionListComponent implements OnInit {
   protected readonly months = months;
   protected readonly faCircleChevronLeft = faCircleChevronLeft;
   protected readonly faCircleChevronRight = faCircleChevronRight;
+  protected readonly TransactionType = TransactionType;
 }

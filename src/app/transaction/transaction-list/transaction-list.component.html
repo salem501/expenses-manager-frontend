@@ -1,15 +1,16 @@
 <div class="overall-section is-flex is-justify-content-space-around">
   <div class="box has-text-centered">
     <div class="has-text-weight-bold">Income</div>
-    <div class="mt-2 is-size-4 is-center is-primary" style="color: blue">{{getTotalIncome() | currency: 'EUR'}}</div>
+    <div class="mt-2 is-size-4 is-center has-income-color"
+         style="color: blue">{{getTotalIncome() | currency: 'EUR'}}</div>
   </div>
   <div class="box has-text-centered">
     <div class="has-text-weight-bold">Expenses</div>
-    <div class="mt-2 is-size-4 is-center is-primary" style="color: red">{{getTotalIncome() | currency: 'EUR'}}</div>
+    <div class="mt-2 is-size-4 is-center has-expense-color">{{getTotalExpenses() | currency: 'EUR'}}</div>
   </div>
   <div class="box has-text-centered">
     <div class="has-text-weight-bold">Total</div>
-    <div class="mt-2 is-size-4 is-center is-primary">{{getTotalIncome() | currency: 'EUR'}}</div>
+    <div class="mt-2 is-size-4 is-center">{{getDifferenceIncomeAndExpenses() | currency: 'EUR'}}</div>
   </div>
 </div>
 
@@ -33,6 +34,8 @@
   <ng-container *ngIf="transactions.length!==0">
     <tr *ngFor="let transaction of transactions; let i = index"
         (click)="openChangeForm(transaction)"
+        [ngClass]="{'has-income-color': transaction.type === TransactionType.INCOME,
+        'has-expense-color': transaction.type === TransactionType.EXPENSE}"
         class="table-row">
       <td>{{ i + 1 }}</td>
       <td>{{ transaction.transactionDate }}</td>

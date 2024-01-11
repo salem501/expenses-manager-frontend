@@ -1,3 +1,5 @@
+import {TransactionType} from "./transaction/TransactionType";
+
 export interface User {
   id: string;
   firstName: string;
@@ -28,12 +30,13 @@ export interface Transaction {
   category: string;
   amount: number;
   description?: string;
+  type: TransactionType;
 }
 
 const months = new Map<number, string>([
   [1, 'January'],
   [2, 'February'],
-  [3, 'Mars'],
+  [3, 'March'],
   [4, 'April'],
   [5, 'May'],
   [6, 'June'],

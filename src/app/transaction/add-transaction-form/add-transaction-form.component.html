@@ -9,6 +9,12 @@
     <section class="modal-card-body">
       <form [formGroup]="transactionForm">
         <div class="field">
+          <div class="control">
+            <button (click)="transactionForm.get('type')?.setValue(TransactionType.INCOME)">Income</button>
+            <button (click)="transactionForm.get('type')?.setValue(TransactionType.EXPENSE)">Expense</button>
+          </div>
+        </div>
+        <div class="field">
           <label class="label">Category</label>
           <div class="control">
             <input class="input" type="text" formControlName="category"/>
