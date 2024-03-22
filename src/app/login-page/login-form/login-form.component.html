@@ -1,0 +1,25 @@
+<div class="login-block">
+  <div class="has-text-centered is-size-2">
+    Login
+  </div>
+  <form [formGroup]="loginForm">
+    <div class="field">
+      <label class="label">E-Mail</label>
+      <div class="control">
+        <input type="text" placeholder="Enter your e-mail" formControlName="email">
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Password</label>
+      <div class="control">
+        <input type="text" placeholder="Enter your password" formControlName="password">
+      </div>
+    </div>
+
+  </form>
+  <div class="control is-flex is-flex-direction-column is-justify-content-space-between">
+    <button (click)="login()" class="bg-black hover:bg-gray-800 text-white font-bold py-2 mt-5">Login</button>
+    <a [routerLink]="'/signup'" class="pt-2"> Don't have an account yet?</a>
+  </div>
+</div>

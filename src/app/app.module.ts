@@ -16,6 +16,9 @@ import {LoginComponent} from "./login/login.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 import {AuthorizationInterceptor} from "./auth-service/authorization.interceptor";
+import { SignupFormComponent } from './login-page/signup-form/signup-form.component';
+import { LoginPageComponent } from './login-page/login-page/login-page.component';
+import {LoginFormComponent} from "./login-page/login-form/login-form.component";
 
 @NgModule({
   declarations: [
@@ -25,7 +28,11 @@ import {AuthorizationInterceptor} from "./auth-service/authorization.interceptor
     StatisticsComponent,
     PreferencesComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    LoginFormComponent,
+    SignupFormComponent,
+    LoginPageComponent,
+    LoginFormComponent
   ],
   imports: [
     BrowserModule,
