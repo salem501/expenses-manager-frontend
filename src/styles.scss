@@ -1,2 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'bulma/css/bulma.css';
+@import "tailwindcss/base";
+@import "tailwindcss/utilities";
+@import "tailwindcss/components";
+
+
+html, body {
+  height: 100vh;
+}
+
+.is-full-height {
+  height: 100vh;
+}

@@ -1,27 +1,37 @@
-<body>
-<div class="box login-block">
-  <div class="has-text-centered is-size-2">
-    Login
+<div class="is-flex is-full-height">
+  <div class="image-container">
+    <a href="/">
+      <img class="pl-4" ngSrc="assets\login-page-image.png" width="350" height="350" priority>
+    </a>
+    <div class="slogan">
+      Expenses Manager - Track your monthly finances
+    </div>
   </div>
-  <form [formGroup]="loginForm">
-    <div class="field">
-      <label class="label">E-Mail</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="Text input" formControlName="email">
+  <div class="login-container">
+    <div class="login-block">
+      <div class="has-text-centered is-size-2">
+        Login
+      </div>
+      <form [formGroup]="loginForm">
+        <div class="field">
+          <label class="label">E-Mail</label>
+          <div class="control">
+            <input type="text" placeholder="Enter your e-mail" formControlName="email">
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Password</label>
+          <div class="control">
+            <input type="text" placeholder="Enter your password" formControlName="password">
+          </div>
+        </div>
+
+      </form>
+      <div class="control is-flex is-flex-direction-column is-justify-content-space-between">
+        <button (click)="login()" class="bg-black hover:bg-gray-800 text-white font-bold py-2 mt-5">Login</button>
+        <a [routerLink]="'/signup'" class="pt-2"> Don't have an account yet?</a>
       </div>
     </div>
-
-    <div class="field">
-      <label class="label">Password</label>
-      <div class="control">
-        <input class="input" type="text" placeholder="Text input" formControlName="password">
-      </div>
-    </div>
-
-  </form>
-  <div class="control is-flex is-justify-content-space-between">
-    <a [routerLink]="'/signup'" class="pt-2"> Don't have an account yet?</a>
-    <button (click)="login()" class="button is-link">Login</button>
   </div>
 </div>
-</body>
