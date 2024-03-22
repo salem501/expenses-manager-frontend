@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {AuthService} from "../../auth-service/auth.service";
 import {Router} from "@angular/router";
@@ -9,6 +9,9 @@ import {Router} from "@angular/router";
   styleUrls: ['./login-form.component.scss']
 })
 export class LoginFormComponent {
+
+  @Output() toggleActiveForm = new EventEmitter<void>;
+
   loginForm: FormGroup;
 
   constructor(

@@ -1,1 +1,33 @@
-<p>signup-form works!</p>
+<div class="has-text-centered is-size-2">
+  Sign up
+</div>
+<form [formGroup]="signUpForm">
+  <div class="field">
+    <label class="label">First name</label>
+    <div class="control">
+      <input type="text" placeholder="Enter your first name" formControlName="firstName">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Last name</label>
+    <div class="control">
+      <input type="text" placeholder="Enter your last name" formControlName="lastName">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">E-mail</label>
+    <div class="control">
+      <input type="text" placeholder="Enter your e-mail" formControlName="email">
+    </div>
+  </div>
+  <div class="field">
+    <label class="label">Password</label>
+    <div class="control">
+      <input type="text" placeholder="Enter your password" formControlName="password">
+    </div>
+  </div>
+</form>
+<div class="control is-flex is-flex-direction-column is-justify-content-space-between">
+  <button (click)="signup()" class="bg-black hover:bg-gray-800 text-white font-bold py-2">Sign up</button>
+  <a (click)="toggleActiveForm.emit()" class="pt-2"> You have already an account?</a>
+</div>

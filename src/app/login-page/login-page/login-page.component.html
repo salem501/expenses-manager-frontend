@@ -1,13 +1,14 @@
 <div class="is-flex is-full-height">
   <div class="image-container">
-    <a href="/">
+    <a href="/" [@fadeInSlideIn]>
       <img class="pl-4" ngSrc="assets\login-page-image.png" width="350" height="350" priority>
     </a>
-    <div class="slogan">
+    <div class="slogan" [@fadeInSlideIn]>
       Expenses Manager - Track your monthly finances
     </div>
   </div>
   <div class="login-container">
-    <app-login-form></app-login-form>
+    <app-login-form *ngIf="!activeForm" (toggleActiveForm)="toggleActiveForm()" [@fadeInSlideIn]></app-login-form>
+    <app-signup-form *ngIf="activeForm" (toggleActiveForm)="toggleActiveForm()" [@fadeInSlideIn]></app-signup-form>
   </div>
 </div>

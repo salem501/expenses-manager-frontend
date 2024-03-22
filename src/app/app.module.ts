@@ -11,14 +11,13 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TransactionModule} from "./transaction/transaction.module";
 import {PreferencesComponent} from './preferences/preferences.component';
-import {SignupComponent} from './signup/signup.component';
-import {LoginComponent} from "./login/login.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {JWT_OPTIONS, JwtHelperService} from "@auth0/angular-jwt";
 import {AuthorizationInterceptor} from "./auth-service/authorization.interceptor";
 import { SignupFormComponent } from './login-page/signup-form/signup-form.component';
 import { LoginPageComponent } from './login-page/login-page/login-page.component';
 import {LoginFormComponent} from "./login-page/login-form/login-form.component";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -27,14 +26,13 @@ import {LoginFormComponent} from "./login-page/login-form/login-form.component";
     DashboardComponent,
     StatisticsComponent,
     PreferencesComponent,
-    LoginComponent,
-    SignupComponent,
     LoginFormComponent,
     SignupFormComponent,
     LoginPageComponent,
     LoginFormComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,

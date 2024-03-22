@@ -5,7 +5,6 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {StatisticsComponent} from "./statistics/statistics.component";
 import {faChartPie, faCompass, faMoneyBillTransfer, faSliders, IconDefinition} from "@fortawesome/free-solid-svg-icons";
 import {PreferencesComponent} from "./preferences/preferences.component";
-import {SignupComponent} from "./signup/signup.component";
 import {LoginPageComponent} from "./login-page/login-page/login-page.component";
 
 
@@ -18,12 +17,7 @@ export const nonMenuRoutes: Route[] = [
   {
     path: 'login',
     component: LoginPageComponent
-  },
-  {
-    path: 'signup',
-    component: SignupComponent
   }
-
 ]
 
 export const menuRoutes: MenuRoute[] = [
