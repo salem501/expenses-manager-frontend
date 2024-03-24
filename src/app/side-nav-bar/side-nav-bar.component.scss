@@ -1,5 +1,31 @@
 .is-active {
-  background-color: rgba(150, 3, 42, 0.61) !important;
-  border-right-style: solid;
-  border-right-color: #4e4e4e;
+  font-weight: bold;
+}
+
+.logout :hover{
+  cursor: pointer;
+}
+
+.logo {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  margin-left: 30px;
+  font-weight: 400;
+  font-size: 24px;
+}
+
+.list {
+  border: #be657c 1px solid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: Aleo;
+  font-size: 14px;
+}
+
+nav {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

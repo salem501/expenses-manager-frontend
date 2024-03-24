@@ -1,16 +1,27 @@
-<nav class="menu">
-  <ul class="menu-list">
+<div class="logo">
+  Budget Wise
+</div>
+<nav>
+  <ul class="m-5 ml-6">
     <li *ngFor="let route of menuRoutes">
       <a
         [routerLink]="route.path"
         [routerLinkActive]="'is-active'"
-        class="is-flex is-align-items-center py-3"
+        class="is-flex is-align-items-center py-2"
       >
-        <fa-icon [icon]="route.icon" size="xl"></fa-icon>
-        <span class="is-size-6 ml-4">{{route.label}}</span>
+        <fa-icon [icon]="route.icon" size="lg"></fa-icon>
+        <span class="ml-4">{{ route.label }}</span>
       </a>
     </li>
   </ul>
+  <ul class="m-5 ml-6">
+    <li (click)="logout()" class="is-flex is-align-items-center py-2 logout">
+      <fa-icon [icon]="faArrowRightFromBracket" size="lg"></fa-icon>
+      <span class="ml-4">Logout</span>
+    </li>
+    <li class="is-flex is-align-items-center py-2">
+      <fa-icon [icon]="faSliders" size="lg"></fa-icon>
+      <span class="ml-4">Settings</span>
+    </li>
+  </ul>
 </nav>
-<button (click)="logout()">logout</button>
-
