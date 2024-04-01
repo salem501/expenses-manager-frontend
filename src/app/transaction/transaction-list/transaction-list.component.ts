@@ -2,9 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {TransactionService} from "../transaction.service";
 import months, {Transaction} from "../../model";
 import {library} from '@fortawesome/fontawesome-svg-core'
-import {faCircleChevronLeft, faCircleChevronRight} from "@fortawesome/free-solid-svg-icons";
+import {faCircleChevronLeft, faCircleChevronRight, faSliders} from "@fortawesome/free-solid-svg-icons";
 import {AuthService} from "../../auth-service/auth.service";
 import {TransactionType} from "../TransactionType";
+import {faCreditCard} from "@fortawesome/free-solid-svg-icons/faCreditCard";
+import {faHandHoldingDollar} from "@fortawesome/free-solid-svg-icons/faHandHoldingDollar";
+import {faScaleBalanced} from "@fortawesome/free-solid-svg-icons/faScaleBalanced";
 
 @Component({
   selector: 'app-transaction-list',
@@ -155,4 +158,8 @@ export class TransactionListComponent implements OnInit {
   protected readonly faCircleChevronLeft = faCircleChevronLeft;
   protected readonly faCircleChevronRight = faCircleChevronRight;
   protected readonly TransactionType = TransactionType;
+  protected readonly faSliders = faSliders;
+  protected readonly faCreditCard = faCreditCard;
+  protected readonly faHandHoldingDollar = faHandHoldingDollar;
+  protected readonly faScaleBalanced = faScaleBalanced;
 }

@@ -35,9 +35,24 @@
 }
 
 .has-income-color {
- color: blue;
+  color: blue;
 }
 
 .has-expense-color {
   color: red;
+}
+.summary-element{
+  margin:10px
+}
+.summary-element .icon {
+  border: 30px solid #85ec04;
+  border-radius: 50%;
+  color: #eeeeee;
+  margin-bottom: 30px;
+}
+
+.summary {
+  padding: 25px;
+  border-radius: 20px;
+  background-color: #eeeeee;
 }

@@ -3,8 +3,7 @@
     <app-side-nav-bar></app-side-nav-bar>
   </div>
   <div
-    [ngClass]="{'box': showApplicationView()}"
-    class="outlet-wrapper">
+    [ngClass]="{'outlet-wrapper-application': showApplicationView(), 'outlet-wrapper-login-page': !showApplicationView()}">
     <router-outlet></router-outlet>
   </div>
 </div>

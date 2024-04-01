@@ -2,9 +2,19 @@
   background-color: #eeeeee;
   width: 350px;
   height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
-
-.outlet-wrapper {
+.outlet-wrapper-login-page {
   width: 100vw;
+}
+
+.outlet-wrapper-application {
+  width: 100%;
+  padding: 40px;
+  overflow-y: scroll;
+  margin-left: 350px;
+  height: 100vh;
 }

@@ -1,22 +1,39 @@
-<div class="overall-section is-flex is-justify-content-space-around">
-  <div class="box has-text-centered">
-    <div class="has-text-weight-bold">Income</div>
-    <div class="mt-2 is-size-4 is-center has-income-color"
-         style="color: blue">{{getTotalIncome() | currency: 'EUR'}}</div>
+<span class="is-size-2">
+  Monthly Statements
+</span>
+
+<div class="summary mt-4">
+  <div class="text-2xl">Summary</div>
+
+  <div class="is-flex is-justify-content-space-around">
+    <div class="summary-element">
+      <div class="icon">
+        <fa-icon [icon]="faHandHoldingDollar" size="lg"></fa-icon>
+      </div>
+      <div>Income</div>
+      <div class="text-4xl mt-2">{{ getTotalIncome() | currency: 'EUR' }}</div>
+    </div>
+    <div class="summary-element">
+      <div class="icon">
+        <fa-icon [icon]="faCreditCard" size="lg"></fa-icon>
+      </div>
+      <div>Expenses</div>
+      <div class="text-4xl mt-2">{{ getTotalExpenses() | currency: 'EUR' }}</div>
+    </div>
+    <div class="summary-element">
+      <div class="icon">
+        <fa-icon [icon]="faScaleBalanced" size="lg"></fa-icon>
+      </div>
+      <div>Total</div>
+      <div class="text-4xl mt-2">{{ getDifferenceIncomeAndExpenses() | currency: 'EUR' }}</div>
+    </div>
   </div>
-  <div class="box has-text-centered">
-    <div class="has-text-weight-bold">Expenses</div>
-    <div class="mt-2 is-size-4 is-center has-expense-color">{{getTotalExpenses() | currency: 'EUR'}}</div>
-  </div>
-  <div class="box has-text-centered">
-    <div class="has-text-weight-bold">Total</div>
-    <div class="mt-2 is-size-4 is-center">{{getDifferenceIncomeAndExpenses() | currency: 'EUR'}}</div>
-  </div>
+
 </div>
 
 <div class="is-flex is-justify-content-center my-4">
   <fa-icon class="is-size-4" (click)="goToPreviousMonth()" [icon]="faCircleChevronLeft"></fa-icon>
-  <div class="month-label has-text-centered mx-3 is-size-4 has-text-weight-bold">{{getDateLabel()}}</div>
+  <div class="month-label has-text-centered mx-3 is-size-4 has-text-weight-bold">{{ getDateLabel() }}</div>
   <fa-icon class="is-size-4" (click)="goToNextMonth()" [icon]="faCircleChevronRight"></fa-icon>
 </div>
 
