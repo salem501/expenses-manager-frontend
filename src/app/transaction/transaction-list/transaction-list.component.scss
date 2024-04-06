@@ -1,20 +1,14 @@
 .table thead th {
+  border-bottom: black 2px solid;
   position: sticky;
   top: -20px;
   height: 30px;
-  background-color: rgb(199, 129, 147);
+  background-color: #eeeeee;
   z-index: 2;
-
-  &.first-header-is-rounded {
-    border-radius: 10px 0 0 0;
-  }
-
-  &.last-header-is-rounded {
-    border-radius: 0 10px 0 0;
-  }
 }
 
 .table-row {
+  background-color: #eeeeee;
   &:hover {
     color: rgba(190, 101, 124, 0.7) !important;
     cursor: pointer;
@@ -41,9 +35,11 @@
 .has-expense-color {
   color: red;
 }
-.summary-element{
-  margin:10px
+
+.summary-element {
+  margin: 10px
 }
+
 .summary-element .icon {
   border: 30px solid #85ec04;
   border-radius: 50%;
@@ -55,4 +51,14 @@
   padding: 25px;
   border-radius: 20px;
   background-color: #eeeeee;
+  height: 250px;
+}
+
+.transaction-details {
+  margin-top: 20px;
+  background-color: #eeeeee;
+  border-radius: 20px;
+  padding: 15px;
+  overflow-y: scroll;
+  height: 300px;
 }

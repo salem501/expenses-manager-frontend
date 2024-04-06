@@ -28,46 +28,48 @@
       <div class="text-4xl mt-2">{{ getDifferenceIncomeAndExpenses() | currency: 'EUR' }}</div>
     </div>
   </div>
-
 </div>
 
-<div class="is-flex is-justify-content-center my-4">
-  <fa-icon class="is-size-4" (click)="goToPreviousMonth()" [icon]="faCircleChevronLeft"></fa-icon>
-  <div class="month-label has-text-centered mx-3 is-size-4 has-text-weight-bold">{{ getDateLabel() }}</div>
-  <fa-icon class="is-size-4" (click)="goToNextMonth()" [icon]="faCircleChevronRight"></fa-icon>
-</div>
+<div class="transaction-details">
+  <div class="date-selector is-flex is-justify-content-center my-4">
+    <fa-icon class="is-size-4" (click)="goToPreviousMonth()" [icon]="faCircleChevronLeft"></fa-icon>
+    <div class="month-label has-text-centered mx-3 is-size-4 has-text-weight-bold">{{ getDateLabel() }}</div>
+    <fa-icon class="is-size-4" (click)="goToNextMonth()" [icon]="faCircleChevronRight"></fa-icon>
+  </div>
 
-<table class="table is-narrow is-striped is-fullwidth transaction-table">
-  <thead>
-  <tr>
-    <th [class]="'first-header-is-rounded'"></th>
-    <th>Date</th>
-    <th>Amount</th>
-    <th>Category</th>
-    <th [class]="'last-header-is-rounded'">Description</th>
-  </tr>
-  </thead>
-  <tbody>
-  <ng-container *ngIf="transactions.length!==0">
-    <tr *ngFor="let transaction of transactions; let i = index"
-        (click)="openChangeForm(transaction)"
-        [ngClass]="{'has-income-color': transaction.type === TransactionType.INCOME,
-        'has-expense-color': transaction.type === TransactionType.EXPENSE}"
-        class="table-row">
-      <td>{{ i + 1 }}</td>
-      <td>{{ transaction.transactionDate }}</td>
-      <td>{{ transaction.amount | currency:'EUR' }}</td>
-      <td>{{ transaction.category }}</td>
-      <td>{{ transaction.description }}</td>
+  <table class="table is-fullwidth transaction-table">
+    <thead>
+    <tr>
+      <th [class]="'first-header-is-rounded'"></th>
+      <th>Date</th>
+      <th>Amount</th>
+      <th>Category</th>
+      <th [class]="'last-header-is-rounded'">Description</th>
     </tr>
-  </ng-container>
-  </tbody>
-</table>
-<span *ngIf="transactions.length===0" class="no-data-label">
+    </thead>
+    <tbody>
+    <ng-container *ngIf="transactions.length!==0">
+      <tr *ngFor="let transaction of transactions; let i = index"
+          (click)="openChangeForm(transaction)"
+          [ngClass]="{'has-income-color': transaction.type === TransactionType.INCOME,
+        'has-expense-color': transaction.type === TransactionType.EXPENSE}"
+          class="table-row">
+        <td>{{ i + 1 }}</td>
+        <td>{{ transaction.transactionDate }}</td>
+        <td>{{ transaction.amount | currency:'EUR' }}</td>
+        <td>{{ transaction.category }}</td>
+        <td>{{ transaction.description }}</td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+  <span *ngIf="transactions.length===0" class="no-data-label">
   No Transactions for this month.
 </span>
-<div class="is-flex is-justify-content-end">
-  <button (click)="openAddNewTransactionForm()" class="button is-danger is-outlined">Add new transaction</button>
+  <div class="is-flex is-justify-content-end">
+    <button (click)="openAddNewTransactionForm()" class="button is-danger is-outlined">Add new transaction</button>
+  </div>
+
 </div>
 
 <app-add-transaction-form
@@ -83,3 +85,4 @@
   (onDelete)="deleteTransaction($event)"
   (onSave)="updateTransaction($event)"
 ></app-change-transaction-form>
+
