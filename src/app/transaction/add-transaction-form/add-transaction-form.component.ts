@@ -30,7 +30,7 @@ export class AddTransactionFormComponent {
       amount: [null, [Validators.required, Validators.min(0)]],
       category: [null, Validators.required],
       description: [null],
-      type: [<TransactionType|null>null, Validators.required]
+      type: [<TransactionType|null>TransactionType.EXPENSE, Validators.required]
     });
   }
 
